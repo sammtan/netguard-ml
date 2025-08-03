@@ -1,0 +1,173 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "created": "2025-01-03T22:30:00",
+    "application": "AI Network Simulator",
+    "description": "Corporate Data Breach Scenario - Multi-stage attack topology"
+  },
+  "network": {
+    "devices": [
+      {
+        "id": "device_0",
+        "type": "firewall",
+        "hostname": "fw_main",
+        "ip_address": "192.168.1.1",
+        "position": {"x": 0, "y": 0},
+        "identity": {
+          "mac_address": "AA:BB:CC:DD:EE:01",
+          "manufacturer": "Cisco",
+          "model": "ASA 5506",
+          "serial_number": "FCZ1234567",
+          "firmware_version": "9.14"
+        },
+        "is_running": true
+      },
+      {
+        "id": "device_1",
+        "type": "router",
+        "hostname": "router_dmz",
+        "ip_address": "192.168.1.2",
+        "position": {"x": 200, "y": 0},
+        "identity": {
+          "mac_address": "AA:BB:CC:DD:EE:02",
+          "manufacturer": "Cisco",
+          "model": "ISR 4331",
+          "serial_number": "FCZ2345678",
+          "firmware_version": "16.9.1"
+        },
+        "is_running": true
+      },
+      {
+        "id": "device_2",
+        "type": "switch",
+        "hostname": "switch_internal",
+        "ip_address": "192.168.2.1",
+        "position": {"x": 400, "y": 0},
+        "identity": {
+          "mac_address": "AA:BB:CC:DD:EE:03",
+          "manufacturer": "Cisco",
+          "model": "Catalyst 2960",
+          "serial_number": "FCZ3456789",
+          "firmware_version": "15.2"
+        },
+        "is_running": true
+      },
+      {
+        "id": "device_3",
+        "type": "server",
+        "hostname": "web_server_1",
+        "ip_address": "192.168.10.10",
+        "position": {"x": 200, "y": 150},
+        "identity": {
+          "mac_address": "AA:BB:CC:DD:EE:04",
+          "manufacturer": "Dell",
+          "model": "PowerEdge R740",
+          "serial_number": "DLL1234567",
+          "firmware_version": "2.10.2"
+        },
+        "is_running": true
+      },
+      {
+        "id": "device_4",
+        "type": "server",
+        "hostname": "db_customer",
+        "ip_address": "192.168.2.20",
+        "position": {"x": 600, "y": 100},
+        "identity": {
+          "mac_address": "AA:BB:CC:DD:EE:05",
+          "manufacturer": "Oracle",
+          "model": "Database Server",
+          "serial_number": "ORA1234567",
+          "firmware_version": "19c"
+        },
+        "is_running": true
+      },
+      {
+        "id": "device_5",
+        "type": "server",
+        "hostname": "fs_confidential",
+        "ip_address": "192.168.2.30",
+        "position": {"x": 600, "y": -100},
+        "identity": {
+          "mac_address": "AA:BB:CC:DD:EE:06",
+          "manufacturer": "NetApp",
+          "model": "FAS8200",
+          "serial_number": "NET1234567",
+          "firmware_version": "9.7"
+        },
+        "is_running": true
+      },
+      {
+        "id": "device_6",
+        "type": "workstation",
+        "hostname": "ws_ceo",
+        "ip_address": "192.168.2.101",
+        "position": {"x": 400, "y": 200},
+        "identity": {
+          "mac_address": "AA:BB:CC:DD:EE:07",
+          "manufacturer": "Dell",
+          "model": "OptiPlex 7080",
+          "serial_number": "DLL7080001",
+          "firmware_version": "1.5.2"
+        },
+        "is_running": true
+      },
+      {
+        "id": "device_7",
+        "type": "workstation",
+        "hostname": "ws_finance_1",
+        "ip_address": "192.168.2.102",
+        "position": {"x": 500, "y": 200},
+        "identity": {
+          "mac_address": "AA:BB:CC:DD:EE:08",
+          "manufacturer": "HP",
+          "model": "EliteDesk 800",
+          "serial_number": "HP800001",
+          "firmware_version": "2.1.0"
+        },
+        "is_running": true
+      },
+      {
+        "id": "device_8",
+        "type": "workstation",
+        "hostname": "ws_finance_2",
+        "ip_address": "192.168.2.103",
+        "position": {"x": 600, "y": 200},
+        "identity": {
+          "mac_address": "AA:BB:CC:DD:EE:09",
+          "manufacturer": "HP",
+          "model": "EliteDesk 800",
+          "serial_number": "HP800002",
+          "firmware_version": "2.1.0"
+        },
+        "is_running": true
+      },
+      {
+        "id": "device_9",
+        "type": "server",
+        "hostname": "mail_exchange",
+        "ip_address": "192.168.10.20",
+        "position": {"x": 300, "y": -150},
+        "identity": {
+          "mac_address": "AA:BB:CC:DD:EE:0A",
+          "manufacturer": "Microsoft",
+          "model": "Exchange Server",
+          "serial_number": "MS1234567",
+          "firmware_version": "2019"
+        },
+        "is_running": true
+      }
+    ],
+    "connections": [
+      {"device1": "device_0", "device2": "device_1", "type": "ethernet"},
+      {"device1": "device_1", "device2": "device_2", "type": "ethernet"},
+      {"device1": "device_1", "device2": "device_3", "type": "ethernet"},
+      {"device1": "device_2", "device2": "device_4", "type": "ethernet"},
+      {"device1": "device_2", "device2": "device_5", "type": "ethernet"},
+      {"device1": "device_2", "device2": "device_6", "type": "ethernet"},
+      {"device1": "device_2", "device2": "device_7", "type": "ethernet"},
+      {"device1": "device_2", "device2": "device_8", "type": "ethernet"},
+      {"device1": "device_1", "device2": "device_9", "type": "ethernet"}
+    ]
+  }
+}

@@ -1,0 +1,205 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "created": "2025-01-03T22:35:00",
+    "application": "AI Network Simulator",
+    "description": "IoT Botnet DDoS Attack Scenario - Mass IoT compromise"
+  },
+  "network": {
+    "devices": [
+      {
+        "id": "device_0",
+        "type": "router",
+        "hostname": "isp_router",
+        "ip_address": "203.0.113.1",
+        "position": {"x": 0, "y": 0},
+        "identity": {
+          "mac_address": "BB:CC:DD:EE:FF:01",
+          "manufacturer": "Juniper",
+          "model": "MX204",
+          "serial_number": "JNP1234567",
+          "firmware_version": "20.4R3"
+        },
+        "is_running": true
+      },
+      {
+        "id": "device_1",
+        "type": "firewall",
+        "hostname": "corp_firewall",
+        "ip_address": "192.168.100.1",
+        "position": {"x": 200, "y": 0},
+        "identity": {
+          "mac_address": "BB:CC:DD:EE:FF:02",
+          "manufacturer": "Fortinet",
+          "model": "FortiGate 60F",
+          "serial_number": "FG60F1234",
+          "firmware_version": "7.0.5"
+        },
+        "is_running": true
+      },
+      {
+        "id": "device_2",
+        "type": "smart_hub",
+        "hostname": "iot_hub_1",
+        "ip_address": "192.168.100.10",
+        "position": {"x": 400, "y": 100},
+        "identity": {
+          "mac_address": "BB:CC:DD:EE:FF:03",
+          "manufacturer": "SmartThings",
+          "model": "Hub v3",
+          "serial_number": "STH1234567",
+          "firmware_version": "1.2.3"
+        },
+        "is_running": true
+      },
+      {
+        "id": "device_3",
+        "type": "ip_camera",
+        "hostname": "camera_1",
+        "ip_address": "192.168.100.21",
+        "position": {"x": 600, "y": 150},
+        "identity": {
+          "mac_address": "BB:CC:DD:EE:FF:04",
+          "manufacturer": "Hikvision",
+          "model": "DS-2CD2032",
+          "serial_number": "CAM001",
+          "firmware_version": "5.4.0"
+        },
+        "is_running": true
+      },
+      {
+        "id": "device_4",
+        "type": "ip_camera",
+        "hostname": "camera_2",
+        "ip_address": "192.168.100.22",
+        "position": {"x": 600, "y": 100},
+        "identity": {
+          "mac_address": "BB:CC:DD:EE:FF:05",
+          "manufacturer": "Dahua",
+          "model": "IPC-HFW4431S",
+          "serial_number": "CAM002",
+          "firmware_version": "2.622"
+        },
+        "is_running": true
+      },
+      {
+        "id": "device_5",
+        "type": "ip_camera",
+        "hostname": "camera_3",
+        "ip_address": "192.168.100.23",
+        "position": {"x": 600, "y": 50},
+        "identity": {
+          "mac_address": "BB:CC:DD:EE:FF:06",
+          "manufacturer": "Generic",
+          "model": "IP-CAM-2020",
+          "serial_number": "CAM003",
+          "firmware_version": "1.0"
+        },
+        "is_running": true
+      },
+      {
+        "id": "device_6",
+        "type": "iot_sensor",
+        "hostname": "temp_sensor_1",
+        "ip_address": "192.168.100.31",
+        "position": {"x": 500, "y": 200},
+        "identity": {
+          "mac_address": "BB:CC:DD:EE:FF:07",
+          "manufacturer": "Sonoff",
+          "model": "TH16",
+          "serial_number": "TEMP001",
+          "firmware_version": "3.5.0"
+        },
+        "is_running": true
+      },
+      {
+        "id": "device_7",
+        "type": "iot_sensor",
+        "hostname": "temp_sensor_2",
+        "ip_address": "192.168.100.32",
+        "position": {"x": 550, "y": 200},
+        "identity": {
+          "mac_address": "BB:CC:DD:EE:FF:08",
+          "manufacturer": "Sonoff",
+          "model": "TH16",
+          "serial_number": "TEMP002",
+          "firmware_version": "3.5.0"
+        },
+        "is_running": true
+      },
+      {
+        "id": "device_8",
+        "type": "smart_light",
+        "hostname": "light_1",
+        "ip_address": "192.168.100.41",
+        "position": {"x": 600, "y": -50},
+        "identity": {
+          "mac_address": "BB:CC:DD:EE:FF:09",
+          "manufacturer": "Philips",
+          "model": "Hue White",
+          "serial_number": "LIGHT001",
+          "firmware_version": "1.50.2"
+        },
+        "is_running": true
+      },
+      {
+        "id": "device_9",
+        "type": "smart_light",
+        "hostname": "light_2",
+        "ip_address": "192.168.100.42",
+        "position": {"x": 600, "y": -100},
+        "identity": {
+          "mac_address": "BB:CC:DD:EE:FF:0A",
+          "manufacturer": "LIFX",
+          "model": "A19",
+          "serial_number": "LIGHT002",
+          "firmware_version": "3.70"
+        },
+        "is_running": true
+      },
+      {
+        "id": "device_10",
+        "type": "smart_speaker",
+        "hostname": "speaker_1",
+        "ip_address": "192.168.100.51",
+        "position": {"x": 500, "y": -150},
+        "identity": {
+          "mac_address": "BB:CC:DD:EE:FF:0B",
+          "manufacturer": "Amazon",
+          "model": "Echo Dot",
+          "serial_number": "ECHO001",
+          "firmware_version": "7.2.3"
+        },
+        "is_running": true
+      },
+      {
+        "id": "device_11",
+        "type": "server",
+        "hostname": "target_server",
+        "ip_address": "203.0.113.100",
+        "position": {"x": 200, "y": -200},
+        "identity": {
+          "mac_address": "BB:CC:DD:EE:FF:0C",
+          "manufacturer": "Target Corp",
+          "model": "Web Server",
+          "serial_number": "TGT1234567",
+          "firmware_version": "nginx/1.18"
+        },
+        "is_running": true
+      }
+    ],
+    "connections": [
+      {"device1": "device_0", "device2": "device_1", "type": "ethernet"},
+      {"device1": "device_1", "device2": "device_2", "type": "ethernet"},
+      {"device1": "device_2", "device2": "device_3", "type": "wireless"},
+      {"device1": "device_2", "device2": "device_4", "type": "wireless"},
+      {"device1": "device_2", "device2": "device_5", "type": "wireless"},
+      {"device1": "device_2", "device2": "device_6", "type": "wireless"},
+      {"device1": "device_2", "device2": "device_7", "type": "wireless"},
+      {"device1": "device_2", "device2": "device_8", "type": "wireless"},
+      {"device1": "device_2", "device2": "device_9", "type": "wireless"},
+      {"device1": "device_2", "device2": "device_10", "type": "wireless"},
+      {"device1": "device_1", "device2": "device_11", "type": "ethernet"}
+    ]
+  }
+}

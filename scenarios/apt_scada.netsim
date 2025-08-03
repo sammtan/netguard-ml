@@ -1,0 +1,189 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "created": "2025-01-03T22:40:00",
+    "application": "AI Network Simulator",
+    "description": "Advanced Persistent Threat - SCADA infrastructure attack"
+  },
+  "network": {
+    "devices": [
+      {
+        "id": "device_0",
+        "type": "firewall",
+        "hostname": "perimeter_fw",
+        "ip_address": "10.0.0.1",
+        "position": {"x": 0, "y": 0},
+        "identity": {
+          "mac_address": "CC:DD:EE:FF:00:01",
+          "manufacturer": "Palo Alto",
+          "model": "PA-3220",
+          "serial_number": "PA3220001",
+          "firmware_version": "10.1.0"
+        },
+        "is_running": true
+      },
+      {
+        "id": "device_1",
+        "type": "router",
+        "hostname": "core_router",
+        "ip_address": "10.0.0.2",
+        "position": {"x": 200, "y": 0},
+        "identity": {
+          "mac_address": "CC:DD:EE:FF:00:02",
+          "manufacturer": "Cisco",
+          "model": "ISR 4451",
+          "serial_number": "ISR4451001",
+          "firmware_version": "16.12.4"
+        },
+        "is_running": true
+      },
+      {
+        "id": "device_2",
+        "type": "switch",
+        "hostname": "datacenter_switch",
+        "ip_address": "10.0.1.1",
+        "position": {"x": 400, "y": 0},
+        "identity": {
+          "mac_address": "CC:DD:EE:FF:00:03",
+          "manufacturer": "Cisco",
+          "model": "Nexus 9000",
+          "serial_number": "N9K001",
+          "firmware_version": "9.3(8)"
+        },
+        "is_running": true
+      },
+      {
+        "id": "device_3",
+        "type": "server",
+        "hostname": "scada_master",
+        "ip_address": "10.0.10.10",
+        "position": {"x": 600, "y": 0},
+        "identity": {
+          "mac_address": "CC:DD:EE:FF:00:04",
+          "manufacturer": "Schneider",
+          "model": "SCADA Server",
+          "serial_number": "SCADA001",
+          "firmware_version": "8.2.0"
+        },
+        "is_running": true
+      },
+      {
+        "id": "device_4",
+        "type": "server",
+        "hostname": "scada_historian",
+        "ip_address": "10.0.10.20",
+        "position": {"x": 600, "y": 100},
+        "identity": {
+          "mac_address": "CC:DD:EE:FF:00:05",
+          "manufacturer": "OSIsoft",
+          "model": "PI Historian",
+          "serial_number": "HIST001",
+          "firmware_version": "2019"
+        },
+        "is_running": true
+      },
+      {
+        "id": "device_5",
+        "type": "workstation",
+        "hostname": "hmi_control",
+        "ip_address": "10.0.10.30",
+        "position": {"x": 800, "y": 0},
+        "identity": {
+          "mac_address": "CC:DD:EE:FF:00:06",
+          "manufacturer": "Siemens",
+          "model": "HMI Panel",
+          "serial_number": "HMI001",
+          "firmware_version": "15.1"
+        },
+        "is_running": true
+      },
+      {
+        "id": "device_6",
+        "type": "server",
+        "hostname": "plc_1",
+        "ip_address": "10.0.20.1",
+        "position": {"x": 800, "y": 100},
+        "identity": {
+          "mac_address": "CC:DD:EE:FF:00:07",
+          "manufacturer": "Siemens",
+          "model": "S7-1500",
+          "serial_number": "PLC001",
+          "firmware_version": "2.9.2"
+        },
+        "is_running": true
+      },
+      {
+        "id": "device_7",
+        "type": "server",
+        "hostname": "plc_2",
+        "ip_address": "10.0.20.2",
+        "position": {"x": 800, "y": -100},
+        "identity": {
+          "mac_address": "CC:DD:EE:FF:00:08",
+          "manufacturer": "Allen-Bradley",
+          "model": "ControlLogix",
+          "serial_number": "PLC002",
+          "firmware_version": "32.011"
+        },
+        "is_running": true
+      },
+      {
+        "id": "device_8",
+        "type": "workstation",
+        "hostname": "engineer_ws",
+        "ip_address": "10.0.1.100",
+        "position": {"x": 400, "y": 150},
+        "identity": {
+          "mac_address": "CC:DD:EE:FF:00:09",
+          "manufacturer": "Dell",
+          "model": "Precision 5550",
+          "serial_number": "ENG001",
+          "firmware_version": "1.14.0"
+        },
+        "is_running": true
+      },
+      {
+        "id": "device_9",
+        "type": "server",
+        "hostname": "domain_controller",
+        "ip_address": "10.0.1.10",
+        "position": {"x": 400, "y": -150},
+        "identity": {
+          "mac_address": "CC:DD:EE:FF:00:0A",
+          "manufacturer": "Microsoft",
+          "model": "Windows Server",
+          "serial_number": "DC001",
+          "firmware_version": "2019"
+        },
+        "is_running": true
+      },
+      {
+        "id": "device_10",
+        "type": "server",
+        "hostname": "backup_server",
+        "ip_address": "10.0.1.20",
+        "position": {"x": 600, "y": -150},
+        "identity": {
+          "mac_address": "CC:DD:EE:FF:00:0B",
+          "manufacturer": "Veeam",
+          "model": "Backup Server",
+          "serial_number": "BKP001",
+          "firmware_version": "11.0"
+        },
+        "is_running": true
+      }
+    ],
+    "connections": [
+      {"device1": "device_0", "device2": "device_1", "type": "ethernet"},
+      {"device1": "device_1", "device2": "device_2", "type": "ethernet"},
+      {"device1": "device_2", "device2": "device_3", "type": "ethernet"},
+      {"device1": "device_2", "device2": "device_4", "type": "ethernet"},
+      {"device1": "device_2", "device2": "device_8", "type": "ethernet"},
+      {"device1": "device_2", "device2": "device_9", "type": "ethernet"},
+      {"device1": "device_2", "device2": "device_10", "type": "ethernet"},
+      {"device1": "device_3", "device2": "device_5", "type": "ethernet"},
+      {"device1": "device_3", "device2": "device_6", "type": "ethernet"},
+      {"device1": "device_3", "device2": "device_7", "type": "ethernet"}
+    ]
+  }
+}
