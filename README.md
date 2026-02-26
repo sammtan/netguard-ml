@@ -1,6 +1,8 @@
 # NetGuard ML ⚠️ NOT READY TO USE
 
-An AI-powered network security simulator that combines visual network building with machine learning-based threat detection. NetGuard ML provides real-time analysis of network traffic patterns, anomaly detection, and intelligent security insights through an ensemble of ML models.
+A proof-of-concept network security simulator with experimental ML integration that combines visual network building with machine learning-based threat detection. NetGuard ML demonstrates anomaly detection and threat classification using sklearn models on synthetic network traffic data.
+
+> **⚠️ Known Limitations**: 4 of the 15 ML input features currently return random placeholder values, the LSTM component is never trained (random weights only), and all reported metrics are from synthetic data. See [Note on Current Implementation](#note-on-current-implementation) for full details.
 
 ## Core Features
 
@@ -10,19 +12,19 @@ An AI-powered network security simulator that combines visual network building w
 - Configure device properties visually
 - Save/load network topologies
 
-### 2. Network Simulation Engine
-- Packet-level simulation
-- Support for key protocols (ARP, ICMP, TCP, UDP, HTTP)
-- Routing table simulation
-- VLAN support
-- Real-time packet flow visualization
+### 2. Network Traffic Mockup Engine
+- Visual packet flow demonstration (not a real protocol stack)
+- Protocol labels drawn from predefined lists (ARP, ICMP, TCP, UDP, HTTP)
+- Random device pairing and protocol selection — no TCP handshake, ARP resolution, or real routing
+- No VLAN processing or firewall rule engine
+- Intended as a visual demonstration tool, not a network emulator
 
-### 3. AI Monitoring & Analysis
-- Live traffic pattern analysis
-- Anomaly detection (DDoS, port scans, unusual traffic)
-- Performance predictions
-- Network optimization suggestions
-- Natural language insights
+### 3. ML Monitoring & Analysis (Experimental)
+- Anomaly detection via Isolation Forest (sklearn) — functional, but reliability is reduced because 4 of 15 input features are random placeholders
+- Threat classification via Random Forest (sklearn) — functional, but reliability is reduced because 4 of 15 input features are random placeholders
+- Traffic clustering via DBSCAN (sklearn) — functional, but reliability is reduced because 4 of 15 input features are random placeholders
+- **Note**: 4 of the 15 ML input features (`_get_traffic_pattern_features`) currently return random placeholder values — this is a known TODO and reduces model reliability
+- **Note**: The `DeepLearningDetector` (LSTM) is a structural implementation only — weights are random and no training/backpropagation is implemented, so its outputs are not meaningful
 
 ### 4. Device Types
 - **Routers**: Static/dynamic routing, NAT
@@ -36,16 +38,8 @@ An AI-powered network security simulator that combines visual network building w
 - **Frontend**: PySide6 for GUI
 - **Simulation**: Custom Python engine
 - **Visualization**: NetworkX + Qt Graphics
-- **AI/ML**: TensorFlow/scikit-learn for analysis
+- **AI/ML**: scikit-learn (Isolation Forest, Random Forest, DBSCAN)
 - **Database**: SQLite for configs
-
-## Key Differences from Packet Tracer
-
-1. **AI Integration**: Real-time ML analysis of traffic
-2. **Modern UI**: Clean, dark theme interface
-3. **Python-based**: Fully extensible and scriptable
-4. **Open Source**: Free and customizable
-5. **Focus**: Educational with AI insights
 
 ## Installation
 
@@ -78,21 +72,23 @@ python src/main.py
 └─────────────────────────────────────┘
 ```
 
-## AI Model Architecture
+## ML Model Architecture
 
-The simulator uses an ensemble machine learning approach combining multiple models:
+The simulator integrates three sklearn models and one structural (untrained) LSTM implementation:
 
-- **Isolation Forest**: Unsupervised anomaly detection for identifying unusual network patterns
-- **Random Forest Classifier**: Supervised learning for threat classification (DDoS, malware, etc.)
-- **LSTM Network**: Sequential pattern analysis for time-series network behavior
-- **DBSCAN Clustering**: Pattern recognition and traffic categorization
+- **Isolation Forest**: Unsupervised anomaly detection for identifying unusual network patterns — functional ✅
+- **Random Forest Classifier**: Supervised learning for threat classification (DDoS, malware, etc.) — functional ✅
+- **DBSCAN Clustering**: Pattern recognition and traffic categorization — functional ✅
+- **LSTM (DeepLearningDetector)**: Structural implementation only — weights are randomly initialized and the model is never trained; outputs are not meaningful ⚠️
 
-The models are trained on network packet features including:
+The sklearn models are trained on synthetic packet features. **Important caveat**: 4 out of 15 input features (burst score, periodicity score, entropy score, variance score) are currently random placeholder values. Any accuracy/precision/recall figures produced are from this synthetic + partially-random feature set and should be treated as demonstration values only, not scientifically meaningful metrics.
+
+Features used include:
 - Temporal patterns (time of day, day of week)
 - Protocol and port analysis
 - Device type behaviors
-- Traffic volume and patterns
 - Packet size distributions
+- Traffic pattern scores (**4 of these are random placeholders — TODO**)
 
 ## Test Scenarios & Results
 
@@ -105,9 +101,10 @@ python test_runner_standalone.py
 ```
 
 **Execution Output:**
-- Successfully trained ML models with 2000 synthetic packets
+- Trained sklearn ML models (Isolation Forest, Random Forest, DBSCAN) with 2000 synthetic packets
 - Executed all three attack scenarios
 - Generated both graphical and narrative PDF reports for each scenario
+- **Note**: All metrics shown in reports are derived from synthetic data with partially random features and are demonstration values only
 
 ### Scenario 1: Corporate Data Breach
 
@@ -184,7 +181,7 @@ Each scenario generates a comprehensive graphical report containing:
 - **Anomaly Heatmap**: Device-based anomaly scores across time slots
 - **Attack Phase Progression**: Duration and packet volume per phase
 - **Network Impact Analysis**: Security metrics before/after attack
-- **ML Model Performance**: Precision, recall, and F1-scores
+- **ML Model Performance**: Precision, recall, and F1-scores (demonstration values from synthetic data only — not scientifically meaningful)
 - **Threat Distribution**: Pie chart of detected threat types
 - **Real-time Detection Rate**: True/false positive trends
 
@@ -200,19 +197,19 @@ Detailed narrative reports include:
 
 ## ML Model Architecture Details
 
-The system employs an ensemble approach combining:
-- **Isolation Forest**: Detects outliers in network traffic patterns
-- **Random Forest Classifier**: Classifies known threat types
-- **LSTM Network**: Analyzes sequential patterns in packet flows
-- **DBSCAN Clustering**: Groups similar traffic patterns
+The system employs sklearn models for anomaly detection and classification:
+- **Isolation Forest**: Detects outliers in network traffic patterns — functional ✅
+- **Random Forest Classifier**: Classifies known threat types — functional ✅
+- **DBSCAN Clustering**: Groups similar traffic patterns — functional ✅
+- **LSTM (DeepLearningDetector)**: Structural numpy implementation only — randomly initialized weights, no training implemented; produces meaningless output ⚠️
 
 ### Feature Engineering
-The ML models analyze 15 key features:
+The sklearn models analyze 15 features per packet:
 - Temporal patterns (time-of-day, day-of-week)
 - Protocol and port characteristics
 - Device type relationships
 - Packet size distributions
-- Traffic pattern anomalies
+- **Traffic pattern scores: 4 of these 15 features currently return random values (burst score, periodicity score, entropy score, variance score) — this is a known limitation / TODO**
 
 ## Running Test Scenarios
 
@@ -223,24 +220,27 @@ python test_runner_standalone.py
 ```
 
 This will:
-1. Train the ML models with 2000+ synthetic packets
+1. Train the sklearn ML models (Isolation Forest, Random Forest, DBSCAN) with 2000+ synthetic packets
 2. Execute all three attack scenarios
 3. Generate graphical and narrative PDF reports
 4. Save all results in the `reports/` directory
 
 ### Note on Current Implementation
 
-The current test implementation demonstrates the full pipeline of:
-- ML model training with synthetic data
-- Attack scenario simulation
-- Real-time packet analysis
-- Comprehensive report generation
+This project is a **learning/proof-of-concept** tool. Known limitations:
 
-In a production environment, the ML models would require:
-- Extended training on real network traffic data
-- Fine-tuning of detection thresholds
-- Continuous learning from labeled security incidents
-- Integration with threat intelligence feeds
+- **Network simulation** is a visual traffic mockup — packets use random pairing and protocol labels, not a real protocol stack (no TCP handshake, no ARP resolution, no actual routing, no VLAN engine)
+- **LSTM component** (`DeepLearningDetector`) has randomly initialized weights and no training/backpropagation implemented — it produces random outputs and is not used for real detection
+- **4 of 15 ML features** (traffic pattern scores) return random placeholder values — model reliability is limited until these are implemented
+- **All reported metrics** (accuracy, precision, recall, F1) are from synthetic data with partially random features and are demonstration values only
+
+What does work:
+- Isolation Forest, Random Forest, and DBSCAN anomaly detection/classification via sklearn ✅
+- Save/load trained models with joblib ✅
+- PDF report generation ✅
+- Pre-built attack scenario system ✅
+- 20+ device types in the GUI ✅
+- Save/load network topologies ✅
 
 ## Future Enhancements
 
